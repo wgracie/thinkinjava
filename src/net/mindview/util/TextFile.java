@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeSet;
 
 public class TextFile extends ArrayList<String>{
 	/**
@@ -36,7 +37,7 @@ public class TextFile extends ArrayList<String>{
 	}
 	
 	// write some text to a file
-	public void write(String filename, String text) {
+	public static void write(String filename, String text) {
 		try {
 			PrintWriter out = new PrintWriter(new File(filename).getAbsolutePath());
 			try {
@@ -49,15 +50,7 @@ public class TextFile extends ArrayList<String>{
 		}
 	}
 	
-	// Read a file, separated by any regular expression
-	public TextFile(String filename, String regex) {
-		super(Arrays.asList(read(filename).split(regex)));
-		if (get(0).equals("")) {
-			remove(0);
-		}
-	}
-	
-	// Normally read a file
+	// Normally read by lines
 	public TextFile(String filename) {
 		this(filename, "\n");
 	}
@@ -77,9 +70,25 @@ public class TextFile extends ArrayList<String>{
 		}
 
 	}
+	
+	// Read a file, split by any regular expression
+	public TextFile(String fileName, String splitter) {
+		super(Arrays.asList(read(fileName).split(splitter)));
+		// Regular expression split() often leaves an empty String at first position
+		if(get(0).equals("")) remove(0);
+	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		String path = "src/net/mindview/util/TextFile.java";
+		String file = read(path);
+		write("test.txt", file);
+		TextFile text = new TextFile("test.txt");
+		text.write("test2.txt");
+		// Break into unique sorted list of words
+		TreeSet<String> words = new TreeSet<String>(new TextFile(path, "\\W+"));
+		// Display the capitalized words;
+		System.out.println(words.headSet("a"));
+
 
 	}
 

@@ -5,7 +5,8 @@ public class GenericClassReferences {
 		Class intClass = int.class;
 		Class<Integer> genericIntClass = int.class;
 		genericIntClass = Integer.class;
-		intClass = Double.class;
+		intClass = double.class;
+		// genericIntClass = double.class; // Illegal
 	}
 
 }
