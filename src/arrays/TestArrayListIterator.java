@@ -15,7 +15,8 @@ public class TestArrayListIterator {
             Integer integer = iterator.next();  
             if(integer==10)  
                 list.remove(integer);   //注意这个地方  
-                //iterator.remove();
+//                iterator.remove();
+//            	list.set(0,100);
         }  
     }  
 }  
