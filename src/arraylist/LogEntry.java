@@ -1,6 +1,7 @@
 package arraylist;
 
 import java.util.Date;
+import java.util.TimeZone;
 
 public class LogEntry {
 	private String ipAddress;
@@ -38,8 +39,7 @@ public class LogEntry {
 	}
 	
 	public String toString() {
-		return ipAddress + " " + accessTime + " " + request + " " + statusCode + " " + bytesReturned;
-		
+		return ipAddress + " " + accessTime + " " + request + " " + statusCode + " " + bytesReturned;		
 	}
 
 
